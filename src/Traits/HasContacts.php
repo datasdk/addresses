@@ -1,9 +1,9 @@
 <?php
 
-namespace MyProject\Addresses\Traits;
+namespace DataSDK\Addresses\Traits;
 
 use Lecturize\Addresses\Traits\HasContacts as OriginalHasContacts;
-use MyProject\Addresses\Models\Contact;
+use DataSDK\Addresses\Models\Contact;
 
 trait HasContacts {
 

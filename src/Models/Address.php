@@ -1,10 +1,11 @@
 <?php
 
-namespace MyProject\Addresses\Models;
+namespace DataSDK\Addresses\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DataSDK\Addresses\Database\Factories\AddressFactory;
 
 class Address extends Model
 {
@@ -40,5 +41,10 @@ class Address extends Model
     public function addressable()
     {
         return $this->morphTo();
+    }
+
+    protected static function newFactory()
+    {
+        return AddressFactory::new();
     }
 }

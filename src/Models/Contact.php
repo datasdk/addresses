@@ -1,10 +1,11 @@
 <?php
 
-namespace MyProject\Addresses\Models;
+namespace DataSDK\Addresses\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DataSDK\Addresses\Database\Factories\ContactFactory;
 
 class Contact extends Model
 {
@@ -50,5 +51,10 @@ class Contact extends Model
     public function address()
     {
         return $this->belongsTo(Address::class);
+    }
+
+    protected static function newFactory()
+    {
+        return ContactFactory::new();
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace MyProject\Addresses\Traits;
+namespace DataSDK\Addresses\Traits;
 
 use Lecturize\Addresses\Traits\HasAddresses as OriginalHasAddresses;
 use App\Events\AddressSet;
-use MyProject\Addresses\Models\Address;
+use DataSDK\Addresses\Models\Address;
 use Illuminate\Support\Facades\Log;
 use Netsells\GeoScope\Traits\GeoScopeTrait;
 

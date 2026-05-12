@@ -1,10 +1,20 @@
 {
     "name": "datasdk/addresses",
-    "description": "Address and Contact models for MyProject",
+    "description": "Address and Contact models for DataSDK",
     "license": "MIT",
+    "version": "1.0.0",
     "autoload": {
         "psr-4": {
-            "MyProject\\Addresses\\": "src/"
+            "DataSDK\\Addresses\\": "src/",
+            "DataSDK\\Addresses\\Database\\Factories\\": "database/factories/",
+            "DataSDK\\Addresses\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DataSDK\\Addresses\\AddressesServiceProvider"
+            ]
         }
     },
     "require": {
