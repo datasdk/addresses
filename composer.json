@@ -1,0 +1,12 @@
+{
+    "name": "datasdk/addresses",
+    "description": "Address and Contact models for MyProject",
+    "autoload": {
+        "psr-4": {
+            "MyProject\\Addresses\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.0"
+    }
+}
