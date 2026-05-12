@@ -1,6 +1,6 @@
 # Addresses
 
-Denne pakke indeholder `Address` og `Contact` modeller samt traits til at give Eloquent modeller adresser og kontaktoplysninger.
+This package provides `Address` and `Contact` models, plus traits for adding addresses and contact information to Eloquent models.
 
 ## Installation
 
@@ -8,22 +8,22 @@ Denne pakke indeholder `Address` og `Contact` modeller samt traits til at give E
 composer require datasdk/addresses
 ```
 
-## Modeller
+## Models
 
-Importer modellerne sådan:
+Import the models like this:
 
 ```php
 use MyProject\Addresses\Models\Address;
 use MyProject\Addresses\Models\Contact;
 ```
 
-`Address` bruges til polymorfe adresser via felterne `addressable_type` og `addressable_id`.
+`Address` is used for polymorphic addresses through the `addressable_type` and `addressable_id` columns.
 
-`Contact` bruges til polymorfe kontaktpersoner via felterne `contactable_type` og `contactable_id`.
+`Contact` is used for polymorphic contacts through the `contactable_type` and `contactable_id` columns.
 
-## Brug På En Model
+## Usage On A Model
 
-Tilføj et eller begge traits på den model, der skal have adresser eller kontakter:
+Add one or both traits to the model that should support addresses or contacts:
 
 ```php
 use MyProject\Addresses\Traits\HasAddresses;
@@ -36,11 +36,11 @@ class Company extends Model
 }
 ```
 
-## Address Relationer
+## Address Relationships
 
 `addresses()`
 
-Returnerer alle adresser for modellen.
+Returns all addresses for the model.
 
 ```php
 $company->addresses;
@@ -48,7 +48,7 @@ $company->addresses;
 
 `address()`
 
-Returnerer én primær/default adresse som `morphOne`.
+Returns one primary/default address as a `morphOne` relationship.
 
 ```php
 $company->address;
@@ -56,23 +56,23 @@ $company->address;
 
 `addressable()`
 
-Findes på `Address` modellen og returnerer den model, adressen tilhører.
+Available on the `Address` model. Returns the model that owns the address.
 
 ```php
 $address->addressable;
 ```
 
-## Address Metoder
+## Address Methods
 
 `setAddresses(array $addresses)`
 
-Fjerner eksisterende adresser og opretter derefter de nye adresser.
+Removes existing addresses and then creates the provided addresses.
 
 ```php
 $company->setAddresses([
     [
         'street' => 'Testvej 1',
-        'city' => 'København',
+        'city' => 'Copenhagen',
         'post_code' => '1000',
         'country_id' => 1,
         'is_primary' => true,
@@ -82,24 +82,24 @@ $company->setAddresses([
 
 `syncAddress(array $data)`
 
-Fjerner eksisterende adresser og sætter én ny adresse.
+Removes existing addresses and sets a single new address.
 
 ```php
 $company->syncAddress([
     'street' => 'Testvej 1',
-    'city' => 'København',
+    'city' => 'Copenhagen',
     'post_code' => '1000',
 ]);
 ```
 
 `setAddress(array $data)`
 
-Tilføjer en enkelt adresse og dispatcher `AddressSet` eventet, så andre dele af systemet kan reagere, for eksempel geocoding.
+Adds a single address and dispatches the `AddressSet` event, allowing other parts of the system to react, for example by geocoding the address.
 
 ```php
 $company->setAddress([
     'street' => 'Testvej 1',
-    'city' => 'København',
+    'city' => 'Copenhagen',
     'lat' => 55.6761,
     'lng' => 12.5683,
 ]);
@@ -107,7 +107,7 @@ $company->setAddress([
 
 `countryCode()`
 
-Returnerer landekoden fra modellens country relation.
+Returns the country code from the model's country relationship.
 
 ```php
 $company->countryCode();
@@ -117,17 +117,17 @@ $company->countryCode();
 
 `withinDistanceOfAddress($lat, $long, $distance)`
 
-Finder modeller, hvor adressen ligger inden for en given afstand.
+Returns models where the address is within the given distance.
 
 ```php
 Company::withinDistanceOfAddress(55.6761, 12.5683, 10)->get();
 ```
 
-## Contact Relationer
+## Contact Relationships
 
 `contacts()`
 
-Kommer fra den underliggende contact-trait og returnerer alle kontakter.
+Provided by the underlying contact trait. Returns all contacts.
 
 ```php
 $company->contacts;
@@ -135,7 +135,7 @@ $company->contacts;
 
 `contact()`
 
-Returnerer én primær/default kontakt som `morphOne`.
+Returns one primary/default contact as a `morphOne` relationship.
 
 ```php
 $company->contact;
@@ -143,7 +143,7 @@ $company->contact;
 
 `contactable()`
 
-Findes på `Contact` modellen og returnerer den model, kontakten tilhører.
+Available on the `Contact` model. Returns the model that owns the contact.
 
 ```php
 $contact->contactable;
@@ -151,17 +151,17 @@ $contact->contactable;
 
 `address()`
 
-Findes på `Contact` modellen og returnerer kontaktens adresse.
+Available on the `Contact` model. Returns the contact's address.
 
 ```php
 $contact->address;
 ```
 
-## Contact Metoder
+## Contact Methods
 
 `getContact()`
 
-Henter den første kontakt eller opretter en ny, hvis der ikke findes en.
+Returns the first contact or creates a new one if none exists.
 
 ```php
 $contact = $company->getContact();
@@ -169,7 +169,7 @@ $contact = $company->getContact();
 
 `setContact($contact)`
 
-Sætter eller opdaterer kontaktinformation for modellen. Metoden accepterer et array og ignorerer automatisk felter, der ikke er tilladt.
+Sets or updates contact information for the model. The method accepts an array and automatically ignores fields that are not allowed.
 
 ```php
 $company->setContact([
@@ -181,7 +181,7 @@ $company->setContact([
 ]);
 ```
 
-Hvis data ligger under en `contact` nøgle, pakkes den automatisk ud:
+If the data is nested under a `contact` key, it is automatically unwrapped:
 
 ```php
 $company->setContact([

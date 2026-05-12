@@ -1,6 +1,7 @@
 {
     "name": "datasdk/addresses",
     "description": "Address and Contact models for MyProject",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "MyProject\\Addresses\\": "src/"
